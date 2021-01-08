@@ -17,9 +17,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Compile code
+      - name: Run tests
         run: |
           mkdir build
           cd build
-          cmake ../src
+          cmake ../tests
           make
+          ./tests
