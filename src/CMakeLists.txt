@@ -1,0 +1,5 @@
+project(helloworld)
+add_library(interp interp.cpp)
+target_link_libraries(interp)
+add_executable(main main.cpp)
+target_link_libraries(main interp)
