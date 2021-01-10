@@ -16,7 +16,7 @@ TEST_CASE( "Grid indexing", "[grid_idxs]" ) {
   const std::array <double, 3> grid_center = {0, 0, 0};
 
   // Create grid object
-  grid::Grid<nx, 3, 4> grid1(grid_spacing, vecs, grid_center);
+  grid::Grid<nx, 3, 4> grid1(grid_spacing, grid_center, vecs);
 
   std::array <double, 3> x;
   std::array <int, 3> idxs;

@@ -15,12 +15,13 @@ public:
   std::array <double, 3> GridCenter;
   // Constructor
   Grid(const std::array <double, 3> grid_spacing,
-       const std::array <double, nx * ny * nz * 3> &vecs,
-       const std::array <double, 3> grid_center){
+       const std::array <double, 3> grid_center,
+       const std::array <double, nx * ny * nz * 3> &vecs){
          /*
          Parameters
          ----------
          grid_spacing: spacing of the grid in each dimension
+         grid_center: location of the origin of the grid
          vecs: vector array
          */
          GridSpacing = grid_spacing;
