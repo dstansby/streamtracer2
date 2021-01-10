@@ -1,5 +1,5 @@
-project(helloworld)
+project(streamtracer)
 add_library(interp interp.cpp)
-target_link_libraries(interp)
+add_library(grid grid.cpp)
 add_executable(main main.cpp)
-target_link_libraries(main interp)
+target_link_libraries(main interp grid)
