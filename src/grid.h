@@ -75,6 +75,69 @@ public:
     }
     return out;
   }
+
+  void RK4_update(std::array <double, 3> &x,
+                  const double ds,
+                  const int dir){
+    /*
+    Update a position vector *x* by a single RK4 step along the vector grid.
+
+    Parameters
+    ----------
+    x: position (updated in place by this method)
+    ds: step size
+    dir : step direction (must be 1 or -1)
+    */
+    std::array <double, 3> v;
+
+    // Step 1
+    std::array <double, 3> dx1;
+    stream_function(x, ds, dir, dx1);
+    // Step 2
+    std::array <double, 3> x2, dx2;
+    for (int i=0; i<3; i++){x2[i] = x[i] + 0.5*dx1[i];}
+    stream_function(x2, ds, dir, dx2);
+    // Step 3
+    std::array <double, 3> x3, dx3;
+    for (int i=0; i<3; i++){x3[i] = x[i] + 0.5*dx2[i];}
+    stream_function(x3, ds, dir, dx3);
+    // Step 4
+    std::array <double, 3> x4, dx4;
+    for (int i=0; i<3; i++){x4[i] = x[i] + dx3[i];}
+    stream_function(x4, ds, dir, dx4);
+
+    // Combine the steps together
+    for (int i=0; i<3; i++){
+      x[i] = x[i] + (dx1[i] + 2*dx2[i] + 2*dx3[i] + dx4[i]) / 6.;
+    }
+  }
+
+private:
+  void stream_function(const std::array <double, 3> &x,
+                       const double ds,
+                       const int dir,
+                       std::array <double, 3> &dx_out){
+    /*
+    Calculate the normalised step vector at position *x*.
+
+    Parameters
+    ----------
+    x: position
+    ds: step size
+    dir: step direction
+    Ouput
+    -----
+    dx_out: step vector
+    */
+    dx_out = interp(x);
+    double vmag = std::sqrt(std::pow(dx_out[0], 2) +
+                            std::pow(dx_out[1], 2) +
+                            std::pow(dx_out[2], 2));
+    double step_size = dir * ds / vmag;
+    for (int i=0; i<3; i++){
+      dx_out[i] = dx_out[i] * step_size;
+    }
+  }
 };
 
 } // end namespace "grid"

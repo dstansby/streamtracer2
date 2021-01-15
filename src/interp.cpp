@@ -2,7 +2,7 @@
 
 namespace interp
 {
-  
+
 double interp_trilinear(double x[3], double f[2][2][2])
 /*
 Perform trilinear interpolation within a normalised cube.
