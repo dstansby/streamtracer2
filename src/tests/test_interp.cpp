@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include "../src/interp.h"
+#include "../interp.h"
 
 
 TEST_CASE( "Trilinear interpolation", "[interp_trilinear]" ) {

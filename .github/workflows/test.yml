@@ -22,11 +22,9 @@ jobs:
           sudo apt-get install lcov
       - name: Run tests
         run: |
-          mkdir build
-          cd build
-          cmake ../tests -DCODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug
-          make
-          ./tests
+          cmake -S src -B build -DCODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug
+          cmake --build build
+          ./build/bin/tests
       - name: Collect coverage
         run: |
           lcov --capture --directory . --output-file coverage.info

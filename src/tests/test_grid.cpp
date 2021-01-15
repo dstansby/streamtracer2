@@ -1,7 +1,7 @@
 #include <array>
 
 #include "catch.hpp"
-#include "../src/grid.h"
+#include "../grid.h"
 
 
 TEST_CASE( "Grid indexing", "[grid_idxs]" ) {
@@ -12,7 +12,7 @@ TEST_CASE( "Grid indexing", "[grid_idxs]" ) {
   // Grid spacing
   const std::array <double, 3> grid_spacing = {1, 2, 3};
   // Grid vectors
-  const std::array <double, nx * ny * nz * 3> vecs = {0};
+  const double vecs[3][nx][ny][nz] = {0};
   const std::array <double, 3> grid_center = {0, 0, 0};
 
   // Create grid object

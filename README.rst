@@ -5,7 +5,5 @@ Build instructions
 ------------------
 .. code::
 
-  mkdir build
-  cd build
-  cmake ../src
-  make
+  cmake -S src -B build
+  cmake --build build
