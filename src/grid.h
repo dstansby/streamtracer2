@@ -34,18 +34,6 @@ public:
        {}
 
   // Methods
-  std::array <int, 3> cell_idx(const std::array <double, 3> x){
-    /*
-    Given point within the grid, return the index of the cell
-    that it resides in.
-    */
-    std::array <int, 3> out;
-    for (int i=0; i<3; i++){
-      out[i] = floor((x[i] - GridCenter[i]) / GridSpacing[i]);
-    }
-    return out;
-  }
-
   std::array <double, 3> interp(const std::array < double, 3> x){
     /*
     Given point within the grid, interpolate a vector at that point.
@@ -113,6 +101,18 @@ public:
   }
 
 private:
+  std::array <int, 3> cell_idx(const std::array <double, 3> x){
+    /*
+    Given point within the grid, return the index of the cell
+    that it resides in.
+    */
+    std::array <int, 3> out;
+    for (int i=0; i<3; i++){
+      out[i] = floor((x[i] - GridCenter[i]) / GridSpacing[i]);
+    }
+    return out;
+  }
+
   void stream_function(const std::array <double, 3> &x,
                        const double ds,
                        const int dir,
