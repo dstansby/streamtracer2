@@ -63,7 +63,7 @@ public:
       for (int j=0; j<2; j++){
         for (int k=0; k<2; k++){
           for (int a=0; a<3; a++){
-            cellVecs[i][j][k][a] = Vecs[a][idx[0]+i][idx[1]+j][idx[2]+k];
+            cellVecs[a][i][j][k] = Vecs[a][idx[0]+i][idx[1]+j][idx[2]+k];
           }
         }
       }
