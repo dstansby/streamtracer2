@@ -1,8 +1,9 @@
+cmake_minimum_required(VERSION 3.19)
+
+
 # Have to set this to allow a version string to project()
 cmake_policy(SET CMP0048 NEW)
-
 project(streamtracer VERSION 0.1)
-cmake_minimum_required(VERSION 3.19)
 
 ######################################################################
 # Setting supported build types. Should ONLY be Release or Debug.
