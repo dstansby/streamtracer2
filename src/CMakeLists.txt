@@ -1,4 +1,3 @@
-project(streamtracer)
 add_library(interp interp.cpp)
 add_library(grid grid.cpp)
 add_executable(main main.cpp)
