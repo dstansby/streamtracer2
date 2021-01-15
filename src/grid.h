@@ -34,7 +34,7 @@ public:
        {}
 
   // Methods
-  std::array <int, 3> cell_idx(std::array <double, 3> x){
+  std::array <int, 3> cell_idx(const std::array <double, 3> x){
     /*
     Given point within the grid, return the index of the cell
     that it resides in.
@@ -46,7 +46,7 @@ public:
     return out;
   }
 
-  const std::array <double, 3> interp(const std::array < double, 3> x){
+  std::array <double, 3> interp(const std::array < double, 3> x){
     /*
     Given point within the grid, interpolate a vector at that point.
     */
