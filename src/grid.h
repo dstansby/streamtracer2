@@ -1,6 +1,6 @@
 #include <array>
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 #include "interp.h"
 
