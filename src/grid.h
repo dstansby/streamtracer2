@@ -46,7 +46,7 @@ public:
     return out;
   }
 
-  const std::array <double, 3> interp(std::array < double, 3> x){
+  const std::array <double, 3> interp(const std::array < double, 3> x){
     /*
     Given point within the grid, interpolate a vector at that point.
     */
