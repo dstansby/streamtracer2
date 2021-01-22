@@ -47,3 +47,42 @@ TEST_CASE( "Interpolation", "[interp]" ) {
   REQUIRE( interped[1] == 0.);
   REQUIRE( interped[2] == 0.);
 }
+
+TEST_CASE( "In bounds", "[in_bounds]" ) {
+  // Grid shape
+  // This is just a simple cube
+  const int nx = 2;
+  const int ny = 2;
+  const int nz = 2;
+  // Grid spacing, different in each dimension
+  const std::array <double, 3> grid_spacing = {1, 2, 3};
+  // Grid vectors
+  // Populate with 5 in the x direction, 0 in {y, z} directions
+  double vecs[3][nx][ny][nz];
+  const std::array <double, 3> grid_center = {0, 0, 0};
+
+  // Create grid object
+  grid::Grid<nx, ny, nz> grid1(grid_spacing, grid_center, vecs);
+
+  double x[3];
+  std::array <double, 3> interped;
+
+  x[0] = 1;
+  x[1] = 2;
+  x[2] = 0;
+  REQUIRE( grid1.is_in_bounds(x) == true);
+
+  x[0] = 0;
+  x[1] = 0;
+  x[2] = 0;
+  REQUIRE( grid1.is_in_bounds(x) == true);
+
+  x[0] = -0.01;
+  REQUIRE( grid1.is_in_bounds(x) == false);
+
+  x[0] = 1.0;
+  REQUIRE( grid1.is_in_bounds(x) == true);
+
+  x[0] = 1.001;
+  REQUIRE( grid1.is_in_bounds(x) == false);
+}

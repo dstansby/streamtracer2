@@ -34,7 +34,7 @@ public:
        {}
 
   // Methods
-  std::array <double, 3> interp(const std::array < double, 3> x){
+  std::array <double, 3> interp(const std::array <double, 3> x){
     /*
     Given point within the grid, interpolate a vector at that point.
     */
@@ -100,6 +100,20 @@ public:
     }
   }
 
+  bool is_in_bounds(const double x[3]){
+    // Check if x is within bounds of the grid
+    bool in_bounds = 1;
+    int lower_index[3] = {0, 0, 0};
+    int upper_index[3] = {nx-1, ny-1, nz-1};
+    std::array <double, 3> lower_corner = coordinate(lower_index);
+    std::array <double, 3> upper_corner = coordinate(upper_index);
+    for (int i=0; i<3; i++){
+      in_bounds = in_bounds & (lower_corner[i] <= x[i]);
+      in_bounds = in_bounds & (x[i] <= upper_corner[i]);
+    }
+    return in_bounds;
+  }
+
 private:
   std::array <int, 3> cell_idx(const std::array <double, 3> x){
     /*
@@ -137,6 +151,17 @@ private:
     for (int i=0; i<3; i++){
       dx_out[i] = dx_out[i] * step_size;
     }
+  }
+
+
+  std::array <double, 3> coordinate(const int index[3])
+  {
+    std::array <double, 3> coord;
+    for (int i=0; i<3; i++)
+    {
+      coord[i] = (GridSpacing[i] * index[i]) - GridCenter[i];
+    }
+    return coord;
   }
 };
 
