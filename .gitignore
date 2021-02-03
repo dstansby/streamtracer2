@@ -2,3 +2,6 @@ build/*
 build_test/*
 .vscode/*
 dist/*
+
+*.pyc
+*.whl
